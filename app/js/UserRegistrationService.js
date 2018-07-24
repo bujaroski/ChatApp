@@ -13,7 +13,6 @@ chatApp.controller('formRegistrationController',function ($scope,$log) {
     $log.info($scope.users);
 });
 
-<<<<<<< HEAD
 // chatApp.directive('passwordConfirm', ['$parse', function ($parse) {
 //     return {
 //         restrict: 'A',
@@ -38,32 +37,6 @@ chatApp.controller('formRegistrationController',function ($scope,$log) {
 //         }
 //     };
 // }]);
-=======
-chatApp.directive('passwordConfirm', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        scope: {
-            matchTarget: '=',
-        },
-        require: 'ngModel',
-        link: function link(scope, elem, attrs, ctrl) {
-            var validator = function (value) {
-                ctrl.$setValidity('match', value === scope.matchTarget);
-                return value;
-            }
-
-            ctrl.$parsers.unshift(validator);
-            ctrl.$formatters.push(validator);
-
-            // This is to force validator when the original password gets changed
-            scope.$watch('matchTarget', function(newval, oldval) {
-                validator(ctrl.$viewValue);
-            });
-
-        }
-    };
-}]);
->>>>>>> 49882565bfe5c21d674ae6744c2c86c23a66aa38
 
 chatApp.config(function ($routeProvider) {
 
