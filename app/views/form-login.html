@@ -13,12 +13,15 @@
 </head>
 <style>
     body{padding-top:50px;}
+<<<<<<< HEAD
     #btnBlue{
         background-color: #42AEEC;
     }
     #red{
         color:red;
     }
+=======
+>>>>>>> 49882565bfe5c21d674ae6744c2c86c23a66aa38
 </style>
 
 <body ng-app="ChatApp">
@@ -37,26 +40,43 @@
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Username"  type="text" name="myUsername" ng-model="username" required pattern=".{2,}">
+<<<<<<< HEAD
                                 <span id="red" ng-show="myUsername.username.$touched && myUsername.username.$invalid">The name is required.</span>
                                 <div class="error-message"
                                      id="red"  ng-show="form.name.$invalid && !form.name.$pristine">
+=======
+                                <span ng-show="myUsername.username.$touched && myUsername.username.$invalid">The name is required.</span>
+                                <div class="error-message"
+                                     ng-show="form.name.$invalid && !form.name.$pristine">
+>>>>>>> 49882565bfe5c21d674ae6744c2c86c23a66aa38
                                     We need a name with 2 chars or more.
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password"  type="password" name="myPass" ng-model="password" required  pattern=".{2,}" />
                                 <div class="error-message"
+<<<<<<< HEAD
                                      id="red" ng-show="form.password.$invalid && !form.password.$pristine">
                                     Passwords must have at least 2 chars.
                                 </div>
                                 <span id="red" ng-show="myPass.password.$touched && myPass.password.$invalid">The password is required.</span>
+=======
+                                     ng-show="form.password.$invalid && !form.password.$pristine">
+                                    Passwords must have at least 2 chars.
+                                </div>
+                                <span ng-show="myPass.password.$touched && myPass.password.$invalid">The password is required.</span>
+>>>>>>> 49882565bfe5c21d674ae6744c2c86c23a66aa38
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <input ng-model="remember" name="remember" type="checkbox"> Remember Me
                                 </label>
                             </div>
+<<<<<<< HEAD
                             <input class="btn btn-lg btn-success btn-block" id="btnBlue" type="submit" value="Login" ng-click="submit()" ng-disabled="form.$invalid">
+=======
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login" ng-click="submit()" ng-disabled="form.$invalid">
+>>>>>>> 49882565bfe5c21d674ae6744c2c86c23a66aa38
                             <div>
                                 <a href="/Chat App1/app/views/form-registration.html" class="btn btn-link">Register</a>
                             </div>
