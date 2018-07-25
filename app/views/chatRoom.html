@@ -1,27 +1,25 @@
 
-
-
 <!DOCTYPE html>
 <html>
-<head><script src='https://production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='https://production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='https://production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
+<head>
+    <meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
 
-    <script src="https://use.typekit.net/hoy3lrg.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../css/chatRoom.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="../bower_components/ngDraggable/ngDraggable.js"></script>
+    <script src="../js/chatRoom.js"></script>
+    <script src="../js/drag.directive.js"></script>
+
     <!------ Include the above in your HEAD tag ---------->
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
 </head>
-<body data-ng-app="myApp">
+<body ng-app="myApp">
 <!-- 
 
 A concept for a chat interface. 
@@ -36,7 +34,7 @@ Website: http://emilcarlsson.se/
 
 -->
 
-<div id="frame">
+<div id="frame" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
     <div id="sidepanel">
         <div id="profile">
             <div class="wrap">
@@ -65,224 +63,36 @@ Website: http://emilcarlsson.se/
             <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
             <input type="text" placeholder="Search contacts..." />
         </div>
-        <div id="contacts">
-            <ul data-ng-controller="myController">
-                <li data-ng-repeat="item in items">
 
-                    <div class="row">
+        <div id="contacts" ng-controller="myController">
+            <ul >
+                <li data-ng-repeat="item in items">
+                    <div class="row" ng-click="addChat()">
                        <div class="column" style="margin-bottom: 5px;margin-left: 15px; margin-right: 5px" ><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAM1BMVEUKME7///+El6bw8vQZPVlHZHpmfpHCy9Ojsbzg5ekpSmTR2N44V29XcYayvsd2i5yTpLFbvRYnAAAJcklEQVR4nO2d17arOgxFs+kkofz/154Qmg0uKsuQccddT/vhnOCJLclFMo+//4gedzcApf9B4srrusk+GsqPpj+ypq7zVE9LAdLWWVU+Hx69y2FMwAMGyfusLHwIpooyw9IAQfK+8naDp3OGHvZ0FMhrfPMgVnVjC2kABOQ1MLvi0DEIFj1ILu0LU2WjNRgtSF3pKb4qqtd9IHmjGlJHlc09IHlGcrQcPeUjTAySAGNSkQlRhCCJMGaUC0HSYUx6SmxFAtJDTdylsr4ApC1TY0yquKbCBkk7qnYVzPHFBHkBojhVJWviwgPJrsP4qBgTgbQXdsesjm4pDJDmIuswVZDdFx0ENTtkihoeqSDXD6tVxOFFBHndMKxWvUnzexpIcx/Gg2goJJDhVo6PCMGRAnKTmZuKm3wcJO/upphUqUHy29yVrRhJDORXOKIkEZDf4YiRhEF+iSNCEgb5KY4wSRDkB/yurUEG8nMcocgYABnvbrVL3nMIP0h/d5udKnwzSC/InfPdkJ6eWb0PJE++dyVVyQP5iQmWW27X5QG5druEKafBu0Hqu9saVOHa8HKC/K6BzHKZiRMEZCDF0Nd1/ZfXI/fcOibHOssFgokg9uFA20BhztHEAZIjIohrD/o1wljeFBDEwBo8YUt5Ir/rNLjOIACPFdy/AbEcPdcJBOCxytjeYAM4Kzp6rhOIPhRGNzwmFP3rOoTFI0irtnQKx6fj1Zt+h9njEUS9mKJxfFRrX5lt7wcQtaWTOfTHeIXVJQcQrRW+OYex2j0a66XZINoO8a7fPH2iHF2mC7ZBtB3Czb5QvjizSx7A3308mRzqAwujSywQbYfwc0iU8zqjS0yQ6ztEHX9332KCaGNIYB/Qq1z3yN0oDZBWyeFYJBCkm2sXLhDtpKFwNDMu5TnrZpYGiHbK4Nlwikg5DrYV1g6iPoJmzE5MKd/fOp53EPUaQZaLqH3u+vo2ELWp3wSyWuYGoj9EEIJoV3L9AUS/ZLsJpLNBXmqOu0CW6P5A/dx9IL0FAji/FYKot9EqE0Tvs6QBUe/2CxMEkZAlBNGPhdoAQWyTSmbxUwvUygwQyMmniAPgLt87CODXHuftWJIQgzrfQDC5AfwSgz9MmmG/gWCOqDgZ4JsQeTvZBoJJDhAFEsSDyxUEEUUekk0UEMhjBcEcGsoWVpBU3NcCgkkPkJWrKbdRZvULCMTWhYEdMrayBQRyqHcnSLmAIH7LcWJ8Hch7BsHEdWFpJsZjziCgFBpZ9TPm4e0XBJTTJKt9xjy8RoLI4gimPLP5goCSgWTrEcyzsy8IqmZVMo0H5bJiQToBCOjZ5RcElhjLN3dU7uQMAvoxwQkJZKI1CQzCthJYEigahHuDDi4rFwzCPQ7F1fiDQZgTR5iJwEGYRgIsiECD8BwwMAEfDcIaW8CRBQdhjS1kJQEchDEFhiRKr4KDFPS9FGQNVwEHoW83QjsEHdkfnuIOl6C1NjMItiaCaCWgbdpFJXQ9soh2uoB9aJcCxFdgZwlcrTmvENGlrITBBdpK25Qhd1F2RScq8CKu/gsCL8qN5THjy+Rr5E6joYgPxpdl518QrCf8Kpgjn6C8HLkbb+vt7ZM8wdVvy258khsRfHaS5DalDnlidZT7Erk+SXV5Bj1D3LS29XyhVJuoKHs9Q8S6reK11oUc7vPcr9uswP3SLiDINefXOF5rwCuGzVT6zVkVPfh2wWmHcz4wAwba2cgN1/Tsvleu7//i69CgVyt1GwjOs2+XK3rtbl151Tg3vOeioG40Mz2V+6pQ4xbJHOZj6g0EMxk93tV7fuedvVZpQSPhbwNBGInrymGrwNh1GXmL8F+lAaJ+NU/fzcmvJqvKj7177+1v1GY/GiBKI1Fdy/2XK6upXwaIJpI8B/399W0mH9zzafKaeCF9J0WF+jyCuFusTGzZKhFH8dVLZql2brxgcdVBKb7KG/7UZTmB3XJ6uL/QYT5ScRI74FcHEJ7feopyfGkaeaGlPoCw/BbjZmSBWIvINQNmTxdjWJqwUI8sztR4nYPuIPSTSUnOCZOE3ierqRoJfNSQxDjLEYs8i91eqgFCDSWiFHiuqAN9CwEGCPEISVjvwhS7Mfx6dtX8kC5aqvneGBOEFN2v6RBiYwr3DQOkLhEW6fHFbIwFQnkLiWYmZxE220z/aedPx99C+hiyKR4OzNFhg8S75CJTnxQ1dyugHTLaY10iu9dBpmhQtMz1ABLrkgtHVnRsPUO3OcU25i8cWdGxZbflCBKJqBdMs3aF/dYhNexU9RFcYEmLXYQKghyWdufyldBSU3KpjkKhZclxTXQGCTkL/HZDUIH5+Gkt4SgoCtj7pSYSNJLTK3VVRnmXZxebSMBIzmHABeIdXBebiN9eHYtUZ62ab3BdGkUm+SKJw1bdRXeewaX7qqdAnljg2sVxg3guAk3baofcg9yZ2eZpnHNvSFrEqhB9YPjesmt0pt6Xc8hl7W5L9Q4Xx09ctsrd5VhWeF6nF8SRrZdw49qns//0xTK/AZ8vGr3caTliuzeFNeCJTgafpKlhHd2WP1sy1LqDF798gjKJPLqDr9keoTd43+NyNzC1CI8Xy2lcPtOaVBI5IiAWyQ3e125AcKoXs2Djhy5eVc3KiBxREIPkhjBiLhIjU++4T91IbggjRiCJLSEIwWGddkEaxlVN5KCArPHk8mXVpHk8FHH7JL3n5dPA7C90q7XkeFJucacNmGXeRfswLE71HA79efaGiCN/Ofjmfmtcp8X10tIsqCacV5xfRWjNUiXGYbovWgyFYHcQLak15K9oM5zqmgaeKsHJetbSHfSPzXOiw/rxE9YH4CXaUpsZ0ztemFurP95Jpyvrd29YTpIZr7cEJHqfc7Wl0PFm2+yJR70udaokKFtGPTdm8WdQe24+HmVLlueboWQquBcYYVH2vEzfh8kCks1p90eWsLCyZ8qK7E86Oe+3XYFnBuiWdth20UqZR5SvMoyPg3WNauJipi0LMTQgVq5xUUlZcrPsopPHJ926z8pm7xyFLrH/PxpHSoXKdWgXsLn1scZn1ZDd/2vszN3lt254qkE+qu3yoqLM+ghN3Qz2qcVzUC/ZMFsK/alU6l0OWV/bQz6v6yYbyuN5BaZ4A7Y30vs/PPksS2+qzlvfF7OQmzzcL7W+xa7OIfRuVdtn/tdvdFLnL4OTKcm2W16PmWc4FWWXNSlWM2n3D+uPxuyrcfo74aP+Ac30a82+oLmfAAAAAElFTkSuQmCC" width="50px" height="50px" alt="Nema slika"></div>
                        <div></div> <div class="column"></div>
                        <div class="column"><h1 style="font-size: medium">{{item.username}}</h1></div>
 
-
                     </div>
+
                 </li>
             </ul>
+            <div ng-repeat="chat in displayedForms track by $index">
+                <div ng-include="chat"></div>
+            </div>
         </div>
+    <!-- Dodavaj cha-->
+
+        <!--<div ng-include="'../Chat/chat.html'"></div>-->
+
         <div id="bottom-bar">
             <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
             <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
         </div>
     </div>
-    <div class="content">
-        <div class="contact-profile">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>Harvey Specter</p>
-            <div class="social-media">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-            </div>
-        </div>
-        <div class="messages">
-            <ul>
-                <li class="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>When you're backed against the wall, break the god damn thing down.</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>Excuses don't win championships.</p>
-                </li>
-                <li class="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>Oh yeah, did Michael Jordan tell you that?</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>No, I told him that.</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>What are your choices when someone puts a gun to your head?</p>
-                </li>
-                <li class="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>What are you talking about? You do what they say or they shoot you.</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                </li>
-            </ul>
-        </div>
-        <div class="message-input">
-            <div class="wrap">
-                <input type="text" placeholder="Write your message..." />
-                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-            </div>
-        </div>
-    </div>
+
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script >
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
-$("#profile-img").click(function() {
-    $("#status-options").toggleClass("active");
-});
 
-$(".expand-button").click(function() {
-    $("#profile").toggleClass("expanded");
-    $("#contacts").toggleClass("expanded");
-});
-
-$("#status-options ul li").click(function() {
-    $("#profile-img").removeClass();
-    $("#status-online").removeClass("active");
-    $("#status-away").removeClass("active");
-    $("#status-busy").removeClass("active");
-    $("#status-offline").removeClass("active");
-    $(this).addClass("active");
-
-    if($("#status-online").hasClass("active")) {
-        $("#profile-img").addClass("online");
-    } else if ($("#status-away").hasClass("active")) {
-        $("#profile-img").addClass("away");
-    } else if ($("#status-busy").hasClass("active")) {
-        $("#profile-img").addClass("busy");
-    } else if ($("#status-offline").hasClass("active")) {
-        $("#profile-img").addClass("offline");
-    } else {
-        $("#profile-img").removeClass();
-    };
-
-    $("#status-options").removeClass("active");
-});
-
-function newMessage() {
-    message = $(".message-input input").val();
-    if($.trim(message) == '') {
-        return false;
-    }
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-    $('.message-input input').val(null);
-    $('.contact.active .preview').html('<span>You: </span>' + message);
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
-
-$('.submit').click(function() {
-    newMessage();
-});
-
-$(window).on('keydown', function(e) {
-    if (e.which == 13) {
-        newMessage();
-        return false;
-    }
-});
-var myApp = angular.module('myApp', []);
-
-myApp.controller('myController', ['$scope',
-    function($scope){
-    $scope.items = [
-        {
-            "id": "1",
-            "username": "Username1",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "2",
-            "username": "Username2",
-            "status": "busy",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "3",
-            "username": "Username3",
-            "status": "away",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "4",
-            "username": "Username4",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "5",
-            "username": "Username5",
-            "status": "busy",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "6",
-            "username": "Username6",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "7",
-            "username": "Username7",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "8",
-            "username": "Username8",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "9",
-            "username": "Username9",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "10",
-            "username": "Username10",
-            "status": "active",
-            "src": "app/Images/Profilepicture.png"
-
-        },
-        {
-            "id": "11",
-            "username": "Username11",
-            "status": "away",
-            "src": "app/Images/Profilepicture.png"
-
-        }
-    ];
-}]);
-
-</script>
 
 </body>
 </html>

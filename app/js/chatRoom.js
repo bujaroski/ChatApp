@@ -1,59 +1,100 @@
-$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+var myApp = angular.module('myApp', ['ngDraggable']);
 
-$("#profile-img").click(function() {
-    $("#status-options").toggleClass("active");
-});
+myApp.controller('myController', ['$scope',
+    function($scope){
+        $scope.items = [
+            {
+                "id": "1",
+                "username": "Username1",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
 
-$(".expand-button").click(function() {
-    $("#profile").toggleClass("expanded");
-    $("#contacts").toggleClass("expanded");
-});
+            },
+            {
+                "id": "2",
+                "username": "Username2",
+                "status": "busy",
+                "src": "app/Images/Profilepicture.png"
 
-$("#status-options ul li").click(function() {
-    $("#profile-img").removeClass();
-    $("#status-online").removeClass("active");
-    $("#status-away").removeClass("active");
-    $("#status-busy").removeClass("active");
-    $("#status-offline").removeClass("active");
-    $(this).addClass("active");
+            },
+            {
+                "id": "3",
+                "username": "Username3",
+                "status": "away",
+                "src": "app/Images/Profilepicture.png"
 
-    if($("#status-online").hasClass("active")) {
-        $("#profile-img").addClass("online");
-    } else if ($("#status-away").hasClass("active")) {
-        $("#profile-img").addClass("away");
-    } else if ($("#status-busy").hasClass("active")) {
-        $("#profile-img").addClass("busy");
-    } else if ($("#status-offline").hasClass("active")) {
-        $("#profile-img").addClass("offline");
-    } else {
-        $("#profile-img").removeClass();
-    };
+            },
+            {
+                "id": "4",
+                "username": "Username4",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
 
-    $("#status-options").removeClass("active");
-});
+            },
+            {
+                "id": "5",
+                "username": "Username5",
+                "status": "busy",
+                "src": "app/Images/Profilepicture.png"
 
-function newMessage() {
-    message = $(".message-input input").val();
-    if($.trim(message) == '') {
-        return false;
-    }
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-    $('.message-input input').val(null);
-    $('.contact.active .preview').html('<span>You: </span>' + message);
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
+            },
+            {
+                "id": "6",
+                "username": "Username6",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
 
-$('.submit').click(function() {
-    newMessage();
-});
+            },
+            {
+                "id": "7",
+                "username": "Username7",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
 
-$(window).on('keydown', function(e) {
-    if (e.which == 13) {
-        newMessage();
-        return false;
-    }
-});
+            },
+            {
+                "id": "8",
+                "username": "Username8",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
+
+            },
+            {
+                "id": "9",
+                "username": "Username9",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
+
+            },
+            {
+                "id": "10",
+                "username": "Username10",
+                "status": "active",
+                "src": "app/Images/Profilepicture.png"
+
+            },
+            {
+                "id": "11",
+                "username": "Username11",
+                "status": "away",
+                "src": "app/Images/Profilepicture.png"
+
+            }
+        ];
+        var chat = '../views/chat.html';
+        $scope.displayedForms = [];
+        $scope.addChat = function() {
+            $scope.displayedForms.push(chat);
+        };
+
+        $scope.onDragComplete=function(data,evt){
+            console.log("drag success, data:", data);
+        }
+        $scope.onDropComplete=function(data,evt){
+            console.log("drop success, data:", data);
+        }
 
 
 
-//# sourceURL=pen.js
+    }]);
+
