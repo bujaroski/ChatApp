@@ -125,7 +125,6 @@ myApp.controller('myController', ['$scope',
             {
                 $scope.displayedForms[index].clicked = "false";
                 $scope.displayedForms.splice(index,1);
-
             }
         }
 
