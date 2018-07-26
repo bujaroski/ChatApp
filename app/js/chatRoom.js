@@ -1,5 +1,3 @@
-var myApp = angular.module('myApp', []);
-
 myApp.controller('myController', ['$scope',
     function($scope){
         $scope.items = [
@@ -110,6 +108,7 @@ myApp.controller('myController', ['$scope',
                 item.clicked='true';
                 $scope.displayedForms.push(item);
             }
+            console.log($scope.displayedForms);
 
         };
 
@@ -120,8 +119,16 @@ myApp.controller('myController', ['$scope',
             console.log("drop success, data:", data);
         }
 
+        $scope.removeChat = function (chat) {
+            var index = $scope.displayedForms.indexOf(chat);
+            if(index > -1)
+            {
+                $scope.displayedForms[index].clicked = "false";
+                $scope.displayedForms.splice(index,1);
 
-;
+            }
+        }
+
 
 
     }]);

@@ -1,5 +1,5 @@
-UserRegistrationService.js
-var chatApp = angular.module('chatApp',['ngRoute'])
+
+var chatApp = angular.module('chatApp',['ngRoute']);
 
 chatApp.controller('formRegistrationController',function ($scope,$log) {
     $scope.users = [];

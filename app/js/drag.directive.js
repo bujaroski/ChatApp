@@ -8,6 +8,8 @@ myApp.directive('ngCustomdrag', function($document) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             var w = elem[0];
             var h = elem[0].querySelector('#mydivheader');
+            console.log(h);
+
             if (w && h) {
                 /!* if present, the header is where you move the DIV from:*!/
                 h.onmousedown = dragMouseDown;
@@ -36,7 +38,6 @@ myApp.directive('ngCustomdrag', function($document) {
                 pos3 = e.clientX;
                 pos4 = e.clientY;
                 // set the element's new position:
-                console.log("pos1=" + pos1 + ", " + "pos2=" + pos2 + ", " + "pos3=" + pos3 + ", " + "pos4=" + pos4);
                 w.style.top = (w.offsetTop - pos2) + "px";
                 w.style.left = (w.offsetLeft - pos1) + "px";
             }
