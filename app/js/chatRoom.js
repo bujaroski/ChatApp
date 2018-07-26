@@ -113,15 +113,42 @@ myApp.controller('myController', ['$scope',
 
         };
 
-        $scope.onDragComplete=function(data,evt){
-            console.log("drag success, data:", data);
-        }
-        $scope.onDropComplete=function(data,evt){
-            console.log("drop success, data:", data);
-        }
 
 
-;
+        $scope.addElement = function(username, message){
+
+            var newEle = angular.element(`<div class="row msg_container base_sent">`+
+                `<div class="col-xs-10 col-md-10">`+
+                `       <div class="messages msg_sent">`+
+                `       <p>${message}</p>`+
+                `   <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
+                `   </div>`+
+            `  </div>`+
+            `  <div class="col-md-2 col-xs-2 avatar">`+
+            `      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
+            `   </div>`+
+            `   </div>`+
+            ` <div class="row msg_container base_receive">`+
+            ` <div class="col-md-2 col-xs-2 avatar">`+
+            ` <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
+            ` </div>`+
+            ` <div class="col-xs-10 col-md-10">`+
+            ` <div class="messages msg_receive">`+
+            ` <p>${message} </p>`+
+            `  <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
+            ` </div>`+
+            ` </div>`+
+            ` </div>`);
+
+
+            var target = document.getElementById(username+ '-target');
+            angular.element(target).append(newEle);
+
+
+            angular.element(document.querySelector('#' +username + '-btn-input'))[0].value="";
+
+        }
+
 
 
     }]);

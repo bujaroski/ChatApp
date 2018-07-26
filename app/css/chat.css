@@ -8,11 +8,12 @@
 }
 .chat-window{
     position:fixed;
-
+    color:cornflowerblue;
     margin-left:10px;
 }
 .chat-window > div > .panel{
     border-radius: 5px 5px 0 0;
+
 }
 .icon_minim{
     padding:2px 10px;
