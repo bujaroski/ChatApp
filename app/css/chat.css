@@ -1,4 +1,8 @@
+body{
+    height:400px;
 
+    margin-bottom: -1050px;
+}
 
 .col-md-2, .col-md-10{
     padding:0;
@@ -8,7 +12,7 @@
 }
 .chat-window{
     position:fixed;
-    color:cornflowerblue;
+    color:cornflowerblue !important;
     margin-left:10px;
 }
 .chat-window > div > .panel{
@@ -46,6 +50,7 @@
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     max-width:100%;
+    color:cornflowerblue;
 }
 .messages > p {
     font-size: 13px;
