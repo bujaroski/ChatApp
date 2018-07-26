@@ -1,9 +1,5 @@
 
-body{
-    height:400px;
-    position: fixed;
-    bottom: 0;
-}
+
 .col-md-2, .col-md-10{
     padding:0;
 }
@@ -11,9 +7,8 @@ body{
     margin-bottom: 0px;
 }
 .chat-window{
-    bottom:0;
     position:fixed;
-    float:right;
+
     margin-left:10px;
 }
 .chat-window > div > .panel{
@@ -64,7 +59,7 @@ body{
     overflow: hidden;
     display: flex;
 }
-img {
+.mydiv img {
     display: block;
     width: 100%;
 }
@@ -130,7 +125,12 @@ img {
     bottom:0;
 }
 
-#chat_window_1 {
+#btn-chat
+{
+    height: 38px;
+}
+
+.mydiv {
     position: absolute;
     z-index: 9;
     background-color: #f1f1f1;
@@ -138,7 +138,7 @@ img {
     text-align: center;
 }
 
-#mydivheader {
+.mydivheader {
     padding: 10px;
     cursor: move;
     z-index: 10;
