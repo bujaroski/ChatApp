@@ -8,14 +8,16 @@ myApp.controller('myController', ['$scope',
                 "username": "Username1",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
             },
             {
                 "id": "2",
                 "username": "Username2",
                 "status": "busy",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -23,7 +25,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username3",
                 "status": "away",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -31,7 +34,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username4",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -39,7 +43,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username5",
                 "status": "busy",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -47,7 +52,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username6",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -55,7 +61,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username7",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -63,7 +70,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username8",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -71,7 +79,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username9",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -79,7 +88,8 @@ myApp.controller('myController', ['$scope',
                 "username": "Username10",
                 "status": "active",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             },
             {
@@ -87,14 +97,20 @@ myApp.controller('myController', ['$scope',
                 "username": "Username11",
                 "status": "away",
                 "src": "app/Images/Profilepicture.png",
-                "template" : "../views/chat.html"
+                "template" : "../views/chat.html",
+                "clicked" : "false"
 
             }
         ];
 
         $scope.displayedForms = [];
         $scope.addChat = function(item) {
-            $scope.displayedForms.push(item);
+            if (item.clicked === 'false')
+            {
+                item.clicked='true';
+                $scope.displayedForms.push(item);
+            }
+
         };
 
         $scope.onDragComplete=function(data,evt){
@@ -104,6 +120,8 @@ myApp.controller('myController', ['$scope',
             console.log("drop success, data:", data);
         }
 
+
+;
 
 
     }]);
