@@ -115,6 +115,7 @@ myApp.controller('myController', ['$scope',
         };
 
 
+
         $scope.removeChat = function (chat) {
             var index = $scope.displayedForms.indexOf(chat);
             if(index > -1)
@@ -132,22 +133,22 @@ myApp.controller('myController', ['$scope',
                 `       <p>${message}</p>`+
                 `   <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
                 `   </div>`+
-            `  </div>`+
-            `  <div class="col-md-2 col-xs-2 avatar">`+
-            `      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
-            `   </div>`+
-            `   </div>`+
-            ` <div class="row msg_container base_receive">`+
-            ` <div class="col-md-2 col-xs-2 avatar">`+
-            ` <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
-            ` </div>`+
-            ` <div class="col-xs-10 col-md-10">`+
-            ` <div class="messages msg_receive">`+
-            ` <p>${message} </p>`+
-            `  <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
-            ` </div>`+
-            ` </div>`+
-            ` </div>`);
+                `  </div>`+
+                `  <div class="col-md-2 col-xs-2 avatar">`+
+                `      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
+                `   </div>`+
+                `   </div>`+
+                ` <div class="row msg_container base_receive">`+
+                ` <div class="col-md-2 col-xs-2 avatar">`+
+                ` <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
+                ` </div>`+
+                ` <div class="col-xs-10 col-md-10">`+
+                ` <div class="messages msg_receive">`+
+                ` <p>${message} </p>`+
+                `  <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
+                ` </div>`+
+                ` </div>`+
+                ` </div>`);
 
 
             var target = document.getElementById(username+ '-target');
@@ -160,7 +161,6 @@ myApp.controller('myController', ['$scope',
 
         $scope.onTop = function(username){
             $scope.counter++;
-            console.log(counter);
             document.getElementById(username + '-mydiv').style.zIndex =  $scope.counter;
 
 
@@ -168,7 +168,4 @@ myApp.controller('myController', ['$scope',
 
 
 
-
-
     }]);
-
