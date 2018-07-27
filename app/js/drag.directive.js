@@ -47,5 +47,11 @@ myApp.directive('ngCustomdrag', function($document) {
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
+
+            $scope.counter++;
+            console.log(counter);
+            w.style.zIndex =  $scope.counter;
+
+
         }
     }});
