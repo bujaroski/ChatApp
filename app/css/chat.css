@@ -153,7 +153,7 @@ body{
 #btnright{
     position: relative;
     float: right;
-    right: -200px;
+    right: -150px;
 }
 .fa fa-close{
     float: right;

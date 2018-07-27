@@ -161,7 +161,6 @@ myApp.controller('myController', ['$scope',
 
         $scope.onTop = function(username){
             $scope.counter++;
-            console.log(counter);
             document.getElementById(username + '-mydiv').style.zIndex =  $scope.counter;
 
 

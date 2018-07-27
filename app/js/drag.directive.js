@@ -48,9 +48,9 @@ myApp.directive('ngCustomdrag', function($document) {
                 document.onmousemove = null;
             }
 
-            $scope.counter++;
-            console.log(counter);
-            w.style.zIndex =  $scope.counter;
+            scope.counter++;
+            console.log(scope.counter);
+            w.style.zIndex =  scope.counter;
 
 
         }

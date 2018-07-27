@@ -70,7 +70,7 @@ body {
     -o-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
     transform: scaleY(-1);
-    filter: FlipH;
+
     -ms-filter: "FlipH";
 }
 #frame #sidepanel #profile .wrap {
