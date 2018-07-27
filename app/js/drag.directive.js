@@ -28,6 +28,9 @@ myApp.directive('ngCustomdrag', function($document) {
                 document.onmouseup = closeDragElement;
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
+
+                scope.counter++;
+                w.style.zIndex =  scope.counter;
             }
 
             function elementDrag(e) {
@@ -51,8 +54,10 @@ myApp.directive('ngCustomdrag', function($document) {
 
 
 
+
             scope.counter++;
             w.style.zIndex =  scope.counter;
+
 
 
         }

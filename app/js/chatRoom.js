@@ -168,5 +168,34 @@ myApp.controller('myController', ['$scope',
 
 
 
-
     }]);
+
+myApp.directive('sendmessage', function(){
+    return {
+        restrict: 'A',
+        scope: {
+            username: '=',
+            message: '=',
+            addElement:'&'
+        },
+        link: function (scope, element, attrs) {
+        var shiftDown = false;
+        element.bind("keydown", function (event) {
+            // shift key code 16
+            if(event.which === 16) {
+                shiftDown = true;
+            }
+            // if enter pressed and shift is pressed then we send message
+            if(event.which === 13) {
+                event.preventDefault();
+                scope.addElement(scope.username,scope.message);
+                scope.$apply();
+            }
+        });
+        element.bind("keyup", function (event) {
+            if(event.which === 16) {
+                shiftDown = false;
+            }
+        });
+    }
+}});
