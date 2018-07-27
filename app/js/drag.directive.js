@@ -2,7 +2,8 @@ myApp.directive('ngCustomdrag', function($document) {
     return {
         restrict: 'A',
         scope: {
-            item: '=ngCustomdrag'
+            item: '=',
+            counter: '='
         },
         link: function(scope, elem, attr) {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -48,9 +49,10 @@ myApp.directive('ngCustomdrag', function($document) {
                 document.onmousemove = null;
             }
 
-            $scope.counter++;
-            console.log(counter);
-            w.style.zIndex =  $scope.counter;
+
+
+            scope.counter++;
+            w.style.zIndex =  scope.counter;
 
 
         }
