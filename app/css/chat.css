@@ -1,7 +1,5 @@
 body{
     height:400px;
-
-    margin-bottom: -1050px;
 }
 
 .col-md-2, .col-md-10{
@@ -150,4 +148,14 @@ body{
     z-index: 0;
     background-color: #2196F3;
     color: #fff;
+}
+
+#btnright{
+    position: relative;
+    float: right;
+    right: -200px;
+}
+.fa fa-close{
+    float: right;
+    position: relative;
 }
