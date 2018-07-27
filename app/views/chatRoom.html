@@ -36,71 +36,85 @@ Codepen: https://codepen.io/emilcarlsson/
 Website: http://emilcarlsson.se/
 
 -->
+<div class="container-fluid" ng-controller="myController">
+<div class="row">
+    <div class="col-md-4">
 
-<div id="frame" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
-    <div id="sidepanel">
-        <div id="profile">
-            <div class="wrap">
-                <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-                <p>Mike Ross</p>
-                <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-                <div id="status-options">
+        <div id="frame" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
+            <div id="sidepanel">
+                <div id="profile">
+                    <div class="wrap">
+                        <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+                        <p>Mike Ross</p>
+                        <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+                        <div id="status-options">
+                            <ul>
+                                <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+                                <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+                                <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+                                <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+                            </ul>
+                        </div>
+                        <div id="expanded">
+                            <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
+                            <input name="twitter" type="text" value="mikeross" />
+                            <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
+                            <input name="twitter" type="text" value="ross81" />
+                            <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
+                            <input name="twitter" type="text" value="mike.ross" />
+                        </div>
+                    </div>
+                </div>
+                <div id="search">
+                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+                    <input  type="text" ng-model="item.name" placeholder="Search contacts..." />
+                </div>
+
+                <div id="contacts" >
                     <ul>
-                        <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
-                        <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
-                        <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
-                        <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+                        <li data-ng-repeat="item in items | filter: item.name">
+                            <div class="row" ng-click="addChat(item)">
+                                <div class="column" style="margin-bottom: 5px;margin-left: 15px; margin-right: 5px" ><img src="../Images/Profilepicture.png" width="50px" height="50px" alt="Nema slika"></div>
+                                <div></div> <div class="column"></div>
+                                <div class="column"><h1 style="font-size: medium">{{item.username}}</h1></div>
+
+                            </div>
+
+                        </li>
+                    </ul>
+
+                </div>
+                <!--Draggable DIV:-->
+
+
+                <div class="btn-group dropup">
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
                     </ul>
                 </div>
-                <div id="expanded">
-                    <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
-                    <input name="twitter" type="text" value="mikeross" />
-                    <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-                    <input name="twitter" type="text" value="ross81" />
-                    <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-                    <input name="twitter" type="text" value="mike.ross" />
-                </div>
             </div>
+            <!-- Dodavaj cha-->
+
+            <!--<div ng-include="'../Chat/chat.html'"></div>-->
         </div>
-        <div id="search">
-            <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input  type="text" ng-model="item.name" placeholder="Search contacts..." />
-        </div>
-
-        <div id="contacts" ng-controller="myController">
-            <ul >
-                <li data-ng-repeat="item in items | filter: item.name">
-                    <div class="row" ng-click="addChat(item)">
-                       <div class="column" style="margin-bottom: 5px;margin-left: 15px; margin-right: 5px" ><img src="../Images/Profilepicture.png" width="50px" height="50px" alt="Nema slika"></div>
-                       <div></div> <div class="column"></div>
-                       <div class="column"><h1 style="font-size: medium">{{item.username}}</h1></div>
-
-                    </div>
-
-                </li>
-            </ul>
-            <div ng-repeat="item in displayedForms track by $index">
-                <div ng-include="item.template"></div>
-            </div>
-        </div>
-        <!--Draggable DIV:-->
-
-
-            <div class="btn-group dropup">
-
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-                </ul>
-            </div>
-        </div>
-    <!-- Dodavaj cha-->
-
-        <!--<div ng-include="'../Chat/chat.html'"></div>-->
     </div>
+
+    <div id="chatWindows" >
+        <div ng-repeat="item in displayedForms track by $index">
+            <div ng-include="item.template" ></div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+</div>
+
 
 
 </body>

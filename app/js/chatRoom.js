@@ -113,6 +113,7 @@ myApp.controller('myController', ['$scope',
         };
 
 
+
         $scope.removeChat = function (chat) {
             var index = $scope.displayedForms.indexOf(chat);
             if(index > -1)
