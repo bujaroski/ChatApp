@@ -99,9 +99,9 @@
         <div class="panel-footer">
 
                     <div class="input-group">
-                        <input id="{{item.username}}-btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." ng-model="message"/>
+                        <input id="{{item.username}}-btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." ng-model="message" name="inputField" send-message username="item.username" message="message" keydown="true"/>
                         <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" id="btn-chat" ng-click="addElement(item.username, message)">Send</button>
+                        <button class="btn btn-primary btn-sm" id="{{item.username}}-btn-chat" send-message username="item.username" message="message" click="true" >Send</button>
                         </span>
                     </div>
                 </div>

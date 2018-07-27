@@ -21,7 +21,7 @@
     <!------ Include the above in your HEAD tag ---------->
 
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="myController">
 <!-- 
 
 A concept for a chat interface. 
@@ -35,7 +35,7 @@ Codepen: https://codepen.io/emilcarlsson/
 Website: http://emilcarlsson.se/
 
 -->
-<div class="container-fluid" ng-controller="myController">
+<div class="container-fluid" >
 <div class="row">
     <div class="col-md-4">
 
@@ -104,6 +104,7 @@ Website: http://emilcarlsson.se/
 
     <div id="chatWindows" >
         <div ng-repeat="item in displayedForms track by $index">
+
             <div ng-include="item.template" ></div>
             <br>
             <br>
