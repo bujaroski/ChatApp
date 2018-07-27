@@ -101,6 +101,8 @@ myApp.controller('myController', ['$scope',
             }
         ];
 
+        $scope.counter = 0;
+
         $scope.displayedForms = [];
         $scope.addChat = function(item) {
             if (item.clicked === 'false')
@@ -153,6 +155,14 @@ myApp.controller('myController', ['$scope',
 
 
             angular.element(document.querySelector('#' +username + '-btn-input'))[0].value="";
+
+        }
+
+        $scope.onTop = function(username){
+            $scope.counter++;
+            console.log(counter);
+            document.getElementById(username + '-mydiv').style.zIndex =  $scope.counter;
+
 
         }
 
