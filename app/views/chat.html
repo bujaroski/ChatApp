@@ -1,6 +1,12 @@
 
 <link rel="stylesheet" href="../css/chat.css">
 
+<script>
+    $(document).ready(function(){
+        $('.msg_container_base').animate({
+            scrollTop: $('.msg_container_base').get(0).scrollHeight}, 0);
+    });
+</script>
 
 
 <div class="mydiv" id="{{item.username}}-mydiv" ng-customdrag item="item" counter="counter"   ng-click="onTop(item.username)">
@@ -21,7 +27,7 @@
 
                     </div>
                 </div>
-                <div class="panel-body msg_container_base" id="poraki" >
+                <div class="panel-body msg_container_base" id="poraki"  >
                     <div class="row msg_container base_sent">
                         <div class="col-md-10 col-xs-10">
                             <div class="messages msg_sent" >
