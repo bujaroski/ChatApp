@@ -668,3 +668,16 @@ body {
 #frame .content .message-input .wrap button:focus {
     outline: none;
 }
+
+.active{
+    background-color: green;
+}
+.away{
+    background-color:  yellow;
+}
+.busy{
+    background-color: darkred;
+}
+.offline{
+    background-color: dimgrey;
+}

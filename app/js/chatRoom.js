@@ -48,7 +48,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "6",
                 "username": "Username6",
-                "status": "active",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -75,7 +75,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "9",
                 "username": "Username9",
-                "status": "active",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -93,7 +93,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "11",
                 "username": "Username11",
-                "status": "away",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
