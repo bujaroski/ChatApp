@@ -103,8 +103,10 @@ myApp.controller('myController', ['$rootScope', '$scope',
 
         $scope.counter = 0;
 
-        $rootScope.$on('sendMessage', function(event, username, message){;
+        $rootScope.$on('sendMessage', function(event, username, message){
             $scope.addElement(username, message);
+            //$scope.element[0].scrollTop =  $scope.element[0].scrollHeight;
+            $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
         });
 
         /*$scope.dodadiEvent = function(item)
@@ -222,12 +224,21 @@ myApp.directive('sendMessage', function($rootScope){
         }
     }});
 
-myApp.controller('autoScrollController',function ($scope,$location,$anchorScroll) {
-    $scope.scrollTo = function (scrollLocation) {
-        var element = document.
-        $location.hash(scrollLocation);
-        $anchorScroll();
-    }
-    
-})
-
+// myApp.directive('scrollToBottom', function($timeout) {
+//     return {
+//         scope: {
+//             scrollToBottom: "="
+//         },
+//         restrict: 'A',
+//         link: function(scope, element) {
+//             scope.$watchCollection('scrollToBottom', function() {
+//
+//                     $timeout(function() {
+//                         element[0].scrollTop =  element[0].scrollHeight;
+//                     }, 0);
+//
+//
+//             });
+//         }
+//     };
+// });
