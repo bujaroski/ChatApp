@@ -18,10 +18,10 @@ body {
     width: 95%;
     min-width: 360px;
     max-width: 1000px;
-    height: 92vh;
+    height: 100%;
     min-height: 300px;
     max-height: 720px;
-    background: #E6EAEA;
+
 }
 @media screen and (max-width: 360px) {
     #frame {
