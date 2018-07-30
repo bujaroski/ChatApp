@@ -221,3 +221,13 @@ myApp.directive('sendMessage', function($rootScope){
             }
         }
     }});
+
+myApp.controller('autoScrollController',function ($scope,$location,$anchorScroll) {
+    $scope.scrollTo = function (scrollLocation) {
+        var element = document.
+        $location.hash(scrollLocation);
+        $anchorScroll();
+    }
+    
+})
+
