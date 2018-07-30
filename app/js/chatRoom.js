@@ -106,7 +106,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
         $rootScope.$on('sendMessage', function(event, username, message){
             $scope.addElement(username, message);
             //$scope.element[0].scrollTop =  $scope.element[0].scrollHeight;
-            $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+            $('#' +username + '-poraki').stop().animate({ scrollTop: $('#' +username + '-poraki')[0].scrollHeight}, 1000);
         });
 
         /*$scope.dodadiEvent = function(item)
@@ -128,6 +128,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 item.clicked='true';
                 $scope.displayedForms.push(item);
+
             }
 
 
