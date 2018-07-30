@@ -66,7 +66,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "8",
                 "username": "Username8",
-                "status": "offline",
+                "status": "active",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -75,7 +75,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "9",
                 "username": "Username9",
-                "status": "active",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -84,7 +84,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "10",
                 "username": "Username10",
-                "status": "offline",
+                "status": "active",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -93,7 +93,7 @@ myApp.controller('myController', ['$rootScope', '$scope',
             {
                 "id": "11",
                 "username": "Username11",
-                "status": "away",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -103,8 +103,10 @@ myApp.controller('myController', ['$rootScope', '$scope',
 
         $scope.counter = 0;
 
-        $rootScope.$on('sendMessage', function(event, username, message){;
+        $rootScope.$on('sendMessage', function(event, username, message){
             $scope.addElement(username, message);
+            //$scope.element[0].scrollTop =  $scope.element[0].scrollHeight;
+            $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
         });
 
         /*$scope.dodadiEvent = function(item)
@@ -222,5 +224,21 @@ myApp.directive('sendMessage', function($rootScope){
         }
     }});
 
-
-
+// myApp.directive('scrollToBottom', function($timeout) {
+//     return {
+//         scope: {
+//             scrollToBottom: "="
+//         },
+//         restrict: 'A',
+//         link: function(scope, element) {
+//             scope.$watchCollection('scrollToBottom', function() {
+//
+//                     $timeout(function() {
+//                         element[0].scrollTop =  element[0].scrollHeight;
+//                     }, 0);
+//
+//
+//             });
+//         }
+//     };
+// });

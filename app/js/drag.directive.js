@@ -55,5 +55,10 @@ myApp.directive('ngCustomdrag', function($document) {
 
 
 
+            scope.counter++;
+            w.style.zIndex =  scope.counter;
+
+
+
         }
     }});
