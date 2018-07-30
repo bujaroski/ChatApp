@@ -1,5 +1,5 @@
-myApp.controller('myController', ['$scope',
-    function($scope){
+myApp.controller('myController', ['$rootScope', '$scope',
+    function($rootScope, $scope){
         $scope.items = [
             {
                 "id": "1",
@@ -48,7 +48,7 @@ myApp.controller('myController', ['$scope',
             {
                 "id": "6",
                 "username": "Username6",
-                "status": "active",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -66,7 +66,7 @@ myApp.controller('myController', ['$scope',
             {
                 "id": "8",
                 "username": "Username8",
-                "status": "active",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -84,7 +84,7 @@ myApp.controller('myController', ['$scope',
             {
                 "id": "10",
                 "username": "Username10",
-                "status": "active",
+                "status": "offline",
                 "src": "app/Images/Profilepicture.png",
                 "template" : "../views/chat.html",
                 "clicked" : "false"
@@ -103,6 +103,23 @@ myApp.controller('myController', ['$scope',
 
         $scope.counter = 0;
 
+        $rootScope.$on('sendMessage', function(event, username, message){;
+            $scope.addElement(username, message);
+        });
+
+        /*$scope.dodadiEvent = function(item)
+        {
+            document.querySelector('#' +item.username + '-btn-input').addEventListener("keyup", function(event) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                    // Trigger the button element with a click
+                    document.querySelector('#' +item.username + '-btn-chat').click();
+                }
+            });
+        }*/
+
         $scope.displayedForms = [];
         $scope.addChat = function(item) {
             if (item.clicked === 'false')
@@ -110,7 +127,7 @@ myApp.controller('myController', ['$scope',
                 item.clicked='true';
                 $scope.displayedForms.push(item);
             }
-            console.log($scope.displayedForms);
+
 
         };
 
@@ -126,36 +143,43 @@ myApp.controller('myController', ['$scope',
         }
 
         $scope.addElement = function(username, message){
-
-            var newEle = angular.element(`<div class="row msg_container base_sent">`+
-                `<div class="col-xs-10 col-md-10">`+
-                `       <div class="messages msg_sent">`+
-                `       <p>${message}</p>`+
-                `   <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
-                `   </div>`+
-            `  </div>`+
-            `  <div class="col-md-2 col-xs-2 avatar">`+
-            `      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
-            `   </div>`+
-            `   </div>`+
-            ` <div class="row msg_container base_receive">`+
-            ` <div class="col-md-2 col-xs-2 avatar">`+
-            ` <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
-            ` </div>`+
-            ` <div class="col-xs-10 col-md-10">`+
-            ` <div class="messages msg_receive">`+
-            ` <p>${message} </p>`+
-            `  <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
-            ` </div>`+
-            ` </div>`+
-            ` </div>`);
-
-
-            var target = document.getElementById(username+ '-target');
-            angular.element(target).append(newEle);
+            if(angular.element(document.querySelector('#' +username + '-btn-input'))[0].value.trim() !== "")
+            {
+                var newEle = angular.element(`<div class="row msg_container base_sent">`+
+                    `<div class="col-xs-10 col-md-10">`+
+                    `       <div class="messages msg_sent">`+
+                    `       <p>${message}</p>`+
+                    `   <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
+                    `   </div>`+
+                    `  </div>`+
+                    `  <div class="col-md-2 col-xs-2 avatar">`+
+                    `      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
+                    `   </div>`+
+                    `   </div>`+
+                    ` <div class="row msg_container base_receive">`+
+                    ` <div class="col-md-2 col-xs-2 avatar">`+
+                    ` <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">`+
+                    ` </div>`+
+                    ` <div class="col-xs-10 col-md-10">`+
+                    ` <div class="messages msg_receive">`+
+                    ` <p>${message} </p>`+
+                    `  <time datetime="2009-11-13T20:00">Timothy • 51 min</time>`+
+                    ` </div>`+
+                    ` </div>`+
+                    ` </div>`);
 
 
-            angular.element(document.querySelector('#' +username + '-btn-input'))[0].value="";
+                var target = document.getElementById(username+ '-target');
+                angular.element(target).append(newEle);
+
+
+                angular.element(document.querySelector('#' +username + '-btn-input'))[0].value="";
+            }
+            else
+            {
+                angular.element(document.querySelector('#' +username + '-btn-input'))[0].focus();
+            }
+
 
         }
 
@@ -169,4 +193,34 @@ myApp.controller('myController', ['$scope',
 
 
     }]);
+
+myApp.directive('sendMessage', function($rootScope){
+    return {
+        restrict: 'A',
+        scope: {
+            username: '=',
+            message: '=',
+            keydown: '=',
+            click: '='
+        },
+        link: function (scope, element, attr) {
+            if (scope.keydown) {
+                element.bind("keydown", function (event) {
+                    if (event.which === 13) {
+                        event.preventDefault();
+                        $rootScope.$emit('sendMessage', scope.username, scope.message);
+                    }
+                });
+            }
+
+            if (scope.click) {
+                element.bind("click", function (event) {
+                    event.preventDefault();
+                    $rootScope.$emit('sendMessage', scope.username, scope.message);
+                });
+            }
+        }
+    }});
+
+
 

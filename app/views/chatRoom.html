@@ -21,7 +21,7 @@
     <!------ Include the above in your HEAD tag ---------->
 
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="myController">
 <!-- 
 
 A concept for a chat interface. 
@@ -35,7 +35,7 @@ Codepen: https://codepen.io/emilcarlsson/
 Website: http://emilcarlsson.se/
 
 -->
-<div class="container-fluid" ng-controller="myController">
+<div class="container-fluid" >
 <div class="row">
     <div class="col-md-4">
 
@@ -73,8 +73,15 @@ Website: http://emilcarlsson.se/
                     <ul>
                         <li data-ng-repeat="item in items | filter: item.name">
                             <div class="row" ng-click="addChat(item)">
-                                <div class="column" style="margin-bottom: 5px;margin-left: 15px; margin-right: 5px" ><img src="../Images/Profilepicture.png" width="50px" height="50px" alt="Nema slika"></div>
-                                <div></div> <div class="column"></div>
+                                <div class="column" style="margin-bottom: 5px;margin-left: 15px;">
+                                    <div class="{{item.status}}" style="width: 20px; height: 50px;"></div>
+                                </div>
+                                <div class="column" style="margin-bottom: 5px; margin-right: 5px" >
+
+                                    <img src="../Images/Profilepicture.png" width="50px" height="50px" alt="Nema slika">
+                                </div>
+                                <div></div>
+                                <div class="column" style="background-color: red"></div>
                                 <div class="column"><h1 style="font-size: medium">{{item.username}}</h1></div>
                             </div>
 
@@ -104,6 +111,7 @@ Website: http://emilcarlsson.se/
 
     <div id="chatWindows" >
         <div ng-repeat="item in displayedForms track by $index">
+
             <div ng-include="item.template" ></div>
             <br>
             <br>
