@@ -109,6 +109,8 @@ myApp.controller('myController', ['$rootScope', '$scope',
             $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
         });
 
+
+
         /*$scope.dodadiEvent = function(item)
         {
             document.querySelector('#' +item.username + '-btn-input').addEventListener("keyup", function(event) {
