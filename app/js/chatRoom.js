@@ -102,7 +102,6 @@ myApp.controller('myController', ['$rootScope', '$scope',
         ];
 
         $scope.counter = 0;
-
         $rootScope.$on('sendMessage', function(event, username, message){
             $scope.addElement(username, message);
             //$scope.element[0].scrollTop =  $scope.element[0].scrollHeight;
