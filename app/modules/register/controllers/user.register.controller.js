@@ -44,12 +44,12 @@ chatApp.config(function ($routeProvider) {
     $routeProvider
 
         .when('/register', {
-            templateUrl: '/views/form-registration.html',
+            templateUrl: '/views/form.register.view.html',
             controller: 'formRegistrationController'
         })
 
         .when('/login', {
-            templateUrl: '/views/form-login.html',
+            templateUrl: '/views/form.login.view.html',
             controller: 'loginCtrl'
         })
 });

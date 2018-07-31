@@ -1,4 +1,4 @@
-myApp.directive('ngCustomdrag', function($document) {
+myApp.directive('drag', function($document) {
     return {
         restrict: 'A',
         scope: {
