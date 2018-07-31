@@ -38,8 +38,8 @@ app.controller('loginCtrl',["$scope",'$remember','$location','$rootScope','$wind
 
         if($scope.username == 'admin' && $scope.password == 'admin'){
             $rootScope.loggedIn = true;
-            //$location.path('/Chat App1/app/views/chatRoom.html');
-            $window.location.href = '/Chat App1/app/views/chatRoom.html';
+            //$location.path('/Chat App1/app/views/chat.room.view.html');
+            $window.location.href = '../../chat-room/views/chat.room.view.html';
         }else{
             $scope.showRememberMe();
         }

@@ -6,22 +6,26 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
 
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    <link rel="stylesheet" href="../css/chatRoom.css">
+    <link rel="stylesheet" href="../../../resources/css/chat.room.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="../../../app.js"></script>
 
-    <script src="../js/chat.module.js"></script>
-    <script src="../js/chatRoom.js"></script>
+    <script src="../controllers/chat.room.controller.js"></script>
+    <script src="../../chat-popup/controllers/chat.popup.controller.js"></script>
 
-    <script src="../js/drag.directive.js"></script>
+    <script src="../../../directives/drag.directive.js"></script>
+    <script src="../../../directives/send.message.directive.js"></script>
+
+
 
     <!------ Include the above in your HEAD tag ---------->
 
 </head>
-<body ng-app="myApp" ng-controller="myController">
+<body ng-app="myApp" ng-controller="ChatRoomController">
 <!-- 
 
 A concept for a chat interface. 
@@ -78,13 +82,12 @@ Website: http://emilcarlsson.se/
                                 </div>
                                 <div class="column" style="margin-bottom: 5px; margin-right: 5px" >
 
-                                    <img src="../Images/Profilepicture.png" width="50px" height="50px" alt="Nema slika">
+                                    <img src="../../../resources/images/profile.picture.png" width="50px" height="50px" alt="Nema slika">
                                 </div>
                                 <div></div>
                                 <div class="column" style="background-color: red"></div>
                                 <div class="column"><h1 style="font-size: medium">{{item.username}}</h1></div>
                             </div>
-
                         </li>
                     </ul>
 
@@ -105,14 +108,14 @@ Website: http://emilcarlsson.se/
             </div>
             <!-- Dodavaj cha-->
 
-            <!--<div ng-include="'../Chat/chat.html'"></div>-->
+            <!--<div ng-include="'../Chat/chat.popup.view.html'"></div>-->
         </div>
     </div>
 
     <div id="chatWindows" >
         <div ng-repeat="item in displayedForms track by $index">
 
-            <div ng-include="item.template" ></div>
+            <div ng-include="item.template"></div>
             <br>
             <br>
             <br>
