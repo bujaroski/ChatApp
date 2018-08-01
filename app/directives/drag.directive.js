@@ -1,4 +1,4 @@
-myApp.directive('drag', function($document) {
+myApp.directive('drag', function($rootScope) {
     return {
         restrict: 'A',
         scope: {
@@ -29,8 +29,7 @@ myApp.directive('drag', function($document) {
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
 
-                scope.counter++;
-                w.style.zIndex =  scope.counter;
+                $rootScope.$broadcast('on-top',scope.item.username);
             }
 
             function elementDrag(e) {
@@ -51,14 +50,6 @@ myApp.directive('drag', function($document) {
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
-
-
-
-
-            scope.counter++;
-            w.style.zIndex =  scope.counter;
-
-
 
         }
     }});

@@ -1,5 +1,5 @@
-myApp.controller('ChatRoomController', ['$rootScope', '$scope',
-    function($rootScope, $scope){
+myApp.controller('ChatRoomController', ['$rootScope', '$scope', '$interval',
+    function($rootScope, $scope, $interval){
         $scope.items = [
             {
                 "id": "1",
@@ -123,8 +123,11 @@ myApp.controller('ChatRoomController', ['$rootScope', '$scope',
             {
                 item.clicked='true';
                 $scope.displayedForms.push(item);
-                item.zindex=9999;
-                item.style.zindex=item.zindex;
+                $interval(function() {
+                    $rootScope.$broadcast('on-top',item.username);
+                    $rootScope.$broadcast('scroll-down',item.username);
+                    }, 20, 1);
+
             }
         };
 
@@ -136,7 +139,25 @@ myApp.controller('ChatRoomController', ['$rootScope', '$scope',
                 }
         });
 
+        $scope.$on('on-top', function(event, username) {
 
+            var currentItem = $scope.displayedForms.find(function(item){
+                return item.zindex == 9999;
+            });
+
+            if (currentItem) {
+                currentItem.zindex = 0;
+                var current = document.getElementById(currentItem.username + '-mydiv');
+                current.style.zIndex = '0';
+            }
+            var next = document.getElementById(username + '-mydiv');
+            next.style.zIndex = '9999';
+            var nextItem = $scope.displayedForms.find(function(item){
+                return item.username == username;
+            });
+            nextItem.zindex = 9999;
+
+        });
 
 
 

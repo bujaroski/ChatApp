@@ -1,13 +1,17 @@
-myApp.controller('ChatPopupController', ['$rootScope', '$scope',
-    function($rootScope, $scope) {
-
-        $scope.prvpat=0;
+myApp.controller('ChatPopupController', ['$rootScope', '$scope', '$interval',
+    function($rootScope, $scope, $interval) {
 
         $rootScope.$on('sendMessage', function(event, username, message){
             $scope.addElement(username, message);
             //$scope.element[0].scrollTop =  $scope.element[0].scrollHeight;
-            $('.msg_container_base').stop().animate({ scrollTop: $('.msg_container_base')[0].scrollHeight}, 0);
+            $scope.scrollDown(username);
         });
+
+
+        $scope.scrollDown = function(username){
+            $('#' + username+'-poraki').stop().animate({ scrollTop: $('#' + username+'-poraki')[0].scrollHeight}, 0);
+        };
+
 
         $scope.addElement = function(username, message){
             if(angular.element(document.querySelector('#' +username + '-btn-input'))[0].value.trim() !== "")
@@ -56,23 +60,12 @@ myApp.controller('ChatPopupController', ['$rootScope', '$scope',
       };
 
 
-        $scope.onTop = function(item){
-            var momentalenChat = document.getElementById(item.username + '-mydiv');
-            console.log(momentalenChat);
-            if($scope.prvpat===0) //znachi e prv pat
-            {
-                $scope.prvpat = 1;
-                momentalenChat.style.zIndex = 9999;
-            }
-            else
-            {
+        $scope.onTop = function(username){
+            $rootScope.$broadcast('on-top',username);
+        };
 
-            }
-        }
-
-
-
-//da se smeni ovde so menuvanje na zindex so max
-
+        $scope.$on('scroll-down', function(event, username) {
+            $scope.scrollDown(username);
+            });
 
     }]);

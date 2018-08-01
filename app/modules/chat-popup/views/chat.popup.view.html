@@ -1,15 +1,8 @@
 
 <link rel="stylesheet" href="../../../resources/css/chat.popup.css">
 
-<script>
-    $(document).ready(function(){
-        $('.msg_container_base').animate({
-            scrollTop: $('.msg_container_base').get(0).scrollHeight}, 0);
-    });
-</script>
 
-
-<div class="mydiv" id="{{item.username}}-mydiv" drag item="item" counter="counter"   ng-click="onTop(item.username)" ng-controller="ChatPopupController">
+<div class="mydiv" id="{{item.username}}-mydiv" drag item="item" counter="counter"   ng-click="onTop(item.username);" ng-controller="ChatPopupController" >
     <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;" >
         <div class="col-xs-12 col-md-12">
 
@@ -27,7 +20,7 @@
 
                     </div>
                 </div>
-                <div class="panel-body msg_container_base" id="poraki"  >
+                <div class="panel-body msg_container_base" id="{{item.username}}-poraki"  >
                     <div class="row msg_container base_sent">
                         <div class="col-md-10 col-xs-10">
                             <div class="messages msg_sent" >
